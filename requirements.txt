@@ -1,0 +1,84 @@
+
+Blueprint: Regex‑Based File Renamer in Python
+
+1. Define the User Inputs
+
+Decide what your tool needs from the user:
+
+    - A directory path to scan
+    - A regex pattern to search for
+    - A replacement pattern (e.g., using capture groups)
+    - Optional flags:
+    - Case sensitivity
+    - Recursive search
+    - Dry‑run mode
+    - Preview limit
+
+This is the “interface” of your tool.
+
+2. Collect the Target Files
+
+Plan how your script will gather files:
+
+    - Validate the directory exists
+    - List files (or walk subdirectories if recursive)
+    - Filter out directories vs files
+    - Optionally filter by extension
+
+This stage is about building a clean list of candidates.
+
+3. Apply the Regex Pattern
+
+For each filename:
+
+    - Test whether it matches the regex
+    - Extract capture groups if needed
+    - Build the new filename using the replacement pattern
+    - Skip files that don’t match
+
+This is the transformation logic.
+
+4. Preview the Changes
+
+Before renaming anything:
+
+    - Show the user a list of old_name → new_name
+    - Highlight collisions (two files mapping to the same new name)
+    - Highlight invalid filenames
+    - Respect dry‑run mode
+
+This step protects you from accidental damage.
+
+5. Handle Edge Cases
+
+Plan for:
+
+    - Name collisions
+    - Files that already have the target name
+    - Illegal characters (Windows especially)
+    - Very long paths
+    - Regex errors
+    - Permission issues
+
+This is where robustness comes from.
+
+6. Perform the Rename Operation
+
+If the user confirms:
+
+    - Rename each file
+    - Log successes and failures
+    - Optionally create a rollback log (old → new)
+
+This is the execution phase.
+
+7. Optional Enhancements
+
+If you want to stretch your skills:
+
+    - Add a GUI (Tkinter)
+    - Add undo support using a JSON log
+    - Add batch presets for common patterns
+    - Add unit tests for your regex logic
+    - Add CLI arguments with argparse or click
+    - Add logging with verbosity levels
